@@ -1,2 +1,605 @@
-Nate Thach
-nate.thach@huskers.unl.edu
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ─── TITLE: your name first. This is what Google ranks you on. ─── -->
+<title>Nate Thach — Computer Science PhD candidate, University of Nebraska–Lincoln</title>
+<meta name="description" content="Nate Thach is a PhD candidate in Computer Science at the University of Nebraska–Lincoln, working on large language models for computational social choice: participatory budgeting, facility location, and voting rule design.">
+<meta name="author" content="Nate Thach">
+<link rel="canonical" href="https://YOUR-USERNAME.github.io/">
+
+<!-- Social preview (shows when someone shares your page in Slack/Twitter) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nate Thach — Computer Science PhD candidate, UNL">
+<meta property="og:description" content="Large language models for computational social choice: participatory budgeting, facility location, and voting rules.">
+<meta property="og:url" content="https://YOUR-USERNAME.github.io/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Public+Sans:wght@300..700&display=swap" rel="stylesheet">
+
+<style>
+/* ───────────────────────────── tokens ───────────────────────────── */
+:root{
+  --ink:      #101e1b;   /* deep pine, near-black */
+  --ink-2:    #3b4a45;   /* secondary text */
+  --muted:    #6d7b76;   /* captions, metadata */
+  --paper:    #fbfaf6;
+  --panel:    #f1f0e8;
+  --rule:     #dedcd1;
+  --accent:   #0d6b58;   /* links */
+  --mark:     #c99a2e;   /* the ballot mark */
+
+  --display:  "Newsreader", Georgia, serif;
+  --body:     "Public Sans", system-ui, -apple-system, sans-serif;
+  --utility:  "IBM Plex Mono", ui-monospace, Menlo, monospace;
+
+  --measure:  68ch;
+  --gutter:   9.5rem;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16.5px;
+  font-weight:350;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{ color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(13,107,88,.28); }
+a:hover{ border-bottom-color:var(--accent); }
+a:focus-visible{ outline:2px solid var(--mark); outline-offset:3px; border-radius:2px; }
+
+.wrap{ max-width:64rem; margin:0 auto; padding:0 1.75rem; }
+
+/* the signature: a marked-ballot underline on the words that matter */
+.mark{
+  background-image:linear-gradient(to top, rgba(201,154,46,.45) 0 .3em, transparent .3em);
+  padding:0 .06em;
+}
+
+.skip{
+  position:absolute; left:-9999px;
+  background:var(--ink); color:var(--paper);
+  padding:.6rem 1rem; z-index:10;
+}
+.skip:focus{ left:1rem; top:1rem; }
+
+/* ───────────────────────────── header ───────────────────────────── */
+.site{
+  display:flex; flex-wrap:wrap; gap:1rem 2rem;
+  align-items:baseline; justify-content:space-between;
+  padding:1.6rem 0 1.4rem;
+  border-bottom:1px solid var(--rule);
+}
+.site-name{
+  font-family:var(--utility); font-size:.72rem; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink);
+}
+.site-nav{ display:flex; flex-wrap:wrap; gap:1.4rem; }
+.site-nav a{
+  font-family:var(--utility); font-size:.72rem; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-2); border-bottom:none;
+}
+.site-nav a:hover{ color:var(--accent); }
+
+/* ───────────────────────────── hero ───────────────────────────── */
+.hero{
+  padding:4.5rem 0 4rem;
+  border-bottom:1px solid var(--rule);
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 20rem;
+  gap:3.25rem;
+  align-items:start;
+}
+.hero-text{ min-width:0; }
+
+.portrait{ margin:0; }
+.portrait img{
+  display:block; width:100%; height:auto;
+  background:var(--panel);
+  border:1px solid var(--rule);
+  font-family:var(--utility); font-size:.72rem; color:var(--muted);
+}
+
+.status{
+  display:inline-flex; align-items:center; gap:.55rem;
+  font-family:var(--utility); font-size:.7rem; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-2);
+  background:var(--panel); border:1px solid var(--rule);
+  padding:.4rem .8rem; border-radius:99px;
+}
+.status::before{
+  content:""; width:.45rem; height:.45rem; border-radius:50%;
+  background:var(--mark); flex:none;
+}
+
+.hero h1{
+  font-family:var(--display);
+  font-weight:400; font-size:clamp(2.7rem, 7.5vw, 4.4rem);
+  line-height:1.02; letter-spacing:-.022em;
+  margin:1.5rem 0 .35rem;
+}
+.hero h1 .given{ font-style:italic; font-weight:300; }
+
+.affil{
+  font-family:var(--utility); font-size:.76rem; letter-spacing:.06em;
+  color:var(--muted); margin:0 0 2.2rem;
+}
+
+.thesis{
+  font-family:var(--display);
+  font-size:clamp(1.18rem, 2.35vw, 1.55rem);
+  font-weight:300; line-height:1.5; letter-spacing:-.006em;
+  color:var(--ink); max-width:38ch; margin:0 0 2.4rem;
+}
+
+.contact{
+  display:flex; flex-wrap:wrap; gap:.55rem 1.5rem;
+  font-family:var(--utility); font-size:.78rem;
+}
+.contact a{ border-bottom:1px solid rgba(13,107,88,.3); }
+
+/* ───────────────────────────── sections ───────────────────────────── */
+.band{ padding:3.9rem 0; border-bottom:1px solid var(--rule); }
+
+.band-grid{ display:grid; grid-template-columns:var(--gutter) 1fr; gap:2.75rem; }
+
+.band-label{
+  font-family:var(--utility); font-size:.7rem; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+  padding-top:.35rem;
+}
+.band-body{ min-width:0; max-width:var(--measure); }
+
+.band-body > h3:first-child,
+.band-body > .thread:first-child,
+.band-body > .pubset:first-child{ margin-top:0; }
+
+/* ───────────────────────────── research threads ───────────────────────────── */
+.thread{ margin:0 0 2.4rem; }
+.thread:last-child{ margin-bottom:0; }
+.thread h3{
+  font-family:var(--display); font-weight:500;
+  font-size:1.32rem; line-height:1.25; letter-spacing:-.012em;
+  margin:0 0 .5rem;
+}
+.thread p{ margin:0; color:var(--ink-2); }
+
+/* ───────────────────────────── publications ───────────────────────────── */
+.pubset{ margin:0 0 2.6rem; }
+.pubset:last-child{ margin-bottom:0; }
+.pubset > h3{
+  font-family:var(--utility); font-size:.7rem; font-weight:500;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--ink);
+  margin:0 0 1.1rem; padding-bottom:.5rem; border-bottom:1px solid var(--rule);
+}
+
+.pubs{ list-style:none; margin:0; padding:0; }
+.pub{ padding:.95rem 0; border-bottom:1px solid rgba(222,220,209,.6); }
+.pub:last-child{ border-bottom:none; padding-bottom:0; }
+
+.pub-venue{
+  font-family:var(--utility); font-size:.68rem; font-weight:500;
+  letter-spacing:.08em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:.3rem;
+}
+.pub-venue .flag{ color:var(--muted); font-weight:400; text-transform:none; letter-spacing:.02em; }
+
+.pub-title{
+  font-family:var(--body); font-size:1.02rem; font-weight:600;
+  line-height:1.4; margin:0 0 .18rem; color:var(--ink);
+}
+.pub-authors{ margin:0; font-size:.9rem; color:var(--muted); }
+.pub-authors strong{ color:var(--ink-2); font-weight:600; }
+.pub-links{ margin:.4rem 0 0; font-family:var(--utility); font-size:.7rem; }
+.pub-links a{ margin-right:.9rem; }
+
+/* ───────────────────────────── plain lists ───────────────────────────── */
+.rows{ list-style:none; margin:0; padding:0; }
+.rows li{ padding:.62rem 0; border-bottom:1px solid rgba(222,220,209,.6); }
+.rows li:last-child{ border-bottom:none; }
+.rows .what{ font-weight:600; }
+.rows .when{
+  font-family:var(--utility); font-size:.72rem; color:var(--muted);
+  display:block; margin-top:.1rem;
+}
+
+.subhead{
+  font-family:var(--utility); font-size:.7rem; font-weight:500;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--ink);
+  margin:2.2rem 0 .8rem; padding-bottom:.5rem; border-bottom:1px solid var(--rule);
+}
+.band-body > .subhead:first-child{ margin-top:0; }
+
+.prose{ margin:0 0 1rem; color:var(--ink-2); }
+.prose:last-child{ margin-bottom:0; }
+
+/* ───────────────────────────── footer ───────────────────────────── */
+.foot{
+  padding:2.6rem 0 4rem;
+  font-family:var(--utility); font-size:.72rem; color:var(--muted);
+  display:flex; flex-wrap:wrap; gap:.6rem 1.6rem; justify-content:space-between;
+}
+
+/* ───────────────────────────── motion ───────────────────────────── */
+@keyframes rise{
+  from{ opacity:0; transform:translateY(.6rem); }
+  to{ opacity:1; transform:none; }
+}
+.hero-text > *,
+.portrait{ animation:rise .7s cubic-bezier(.2,.7,.3,1) backwards; }
+.hero-text > *:nth-child(1){ animation-delay:.04s; }
+.hero-text > *:nth-child(2){ animation-delay:.11s; }
+.hero-text > *:nth-child(3){ animation-delay:.16s; }
+.hero-text > *:nth-child(4){ animation-delay:.23s; }
+.hero-text > *:nth-child(5){ animation-delay:.30s; }
+.portrait{ animation-delay:.09s; }
+
+@media (prefers-reduced-motion: reduce){
+  .hero-text > *,
+  .portrait{ animation:none; }
+}
+
+/* ───────────────────────────── responsive ───────────────────────────── */
+@media (max-width: 720px){
+  .band-grid{ grid-template-columns:1fr; gap:1.2rem; }
+  .band-label{ padding-top:0; }
+  .hero{
+    padding:3.2rem 0 3rem;
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+  .portrait{ order:-1; width:100%; max-width:26rem; }
+  .band{ padding:2.9rem 0; }
+}
+
+/* ───────────────────────────── print ───────────────────────────── */
+@media print{
+  .site-nav, .status, .portrait{ display:none; }
+  .hero{ grid-template-columns:1fr; }
+  body{ background:#fff; font-size:11pt; }
+  .band{ page-break-inside:avoid; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="wrap">
+
+  <header class="site">
+    <span class="site-name">Nate Thach</span>
+    <nav class="site-nav" aria-label="Sections">
+      <a href="#about">About</a>
+      <!-- <a href="#research">Research</a> -->
+      <a href="#publications">Publications</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#service">Service</a>
+      <!-- Keep the CV at this exact path forever, so saved links never break -->
+      <a href="cv.pdf">CV</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="hero">
+     <div class="hero-text">
+      <p class="status">On the faculty job market · Fall 2027</p>
+
+      <h1>Nate Thach</h1>
+
+      <p class="affil">PhD Candidate in Computer Science · University of Nebraska–Lincoln (UNL)</p>
+
+      <!-- <p class="thesis">
+        Collective decisions — how a city spends a <span class="mark">budget</span>,
+        where it puts a <span class="mark">facility</span>, which candidate a group
+        <span class="mark">elects</span> — run on rules somebody had to design.
+        I get large language models to design those rules, and hold what they produce
+        to the standards of mechanism design.
+      </p> -->
+
+      <p class="contact">
+        <a href="mailto:nate.thach@huskers.unl.edu">Email</a>
+        <a href="https://scholar.google.com/citations?user=2EXV_fEAAAAJ&hl">Google&nbsp;Scholar</a>
+        <a href="www.linkedin.com/in/nate-thach">LinkedIn</a>
+        <a href="cv.pdf">Curriculum&nbsp;vitae&nbsp;(PDF)</a>
+      </p>
+     </div>
+
+     <figure class="portrait">
+       <img src="photo.jpg" width="2048" height="1536" alt="Nate Thach">
+     </figure>
+    </section>
+
+    <!-- ═══════════════ BACKGROUND ═══════════════ -->
+    <!-- Rewrite this in your own voice. The job of the last sentence is to explain
+         why the substance-use work and the social-choice work belong to one person. -->
+    <section class="band" id="about">
+      <div class="band-grid">
+        <p class="band-label">Background</p>
+        <div class="band-body">
+          <p class="prose">
+            I am a PhD student advised by Dr. <a href="https://cse.unl.edu/~hchan/">Hau Chan</a> at the University of Nebraska–Lincoln.
+          </p>
+          <!-- <p class="prose">
+            I came to computer science from physics and mathematics, which is roughly how
+            I ended up caring about mechanisms rather than models. Most of my work asks
+            whether language models can design the rules that govern collective decisions —
+            budgets, facilities, elections — and whether what they produce survives contact
+            with the guarantees those rules are supposed to provide.
+          </p> -->
+          <p class="prose">
+            My main research lies at the intersection of machine learning and computational social choice,
+            focusing on developing large language model (LLM)-driven frameworks for automating the design of algorithms or <strong>rules</strong> that govern
+            collective decisions such as determining the public projects to fund and locating the facilities for serving a community, with the goal of
+            fulfulling multiple competing objectives such as efficiency and fairness in practice.
+          </p>
+          <p class="prose">
+            In the past, I also worked on AI for public health by developing various machine learning frameworks tailored to longitudinal tabular data
+            for predicting short-term substance use behaviors of persons who use drugs (PWUDs) in Nebraska, which can aid stakeholders in the efficient allocation
+            of limited resource to PWUDs who need the most help.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ RESEARCH ═══════════════ -->
+    <!-- <section class="band" id="research">
+      <div class="band-grid">
+        <p class="band-label">Research</p>
+        <div class="band-body">
+
+          <div class="thread">
+            <h3>Language models as mechanism designers</h3>
+            <p>Rules for dividing a budget or siting a public facility are normally written by hand,
+            one setting at a time, by someone with a theory background. I treat the design of the rule
+            itself as the task: a language model proposes a mechanism, and the proposal is then held to
+            the properties the mechanism was supposed to have — proportionality, strategyproofness,
+            bounded distortion. The work spans participatory budgeting rules, voting rules under
+            approximate metric distortion, multi-facility location, and end-to-end heuristic design.</p>
+          </div>
+
+          <div class="thread">
+            <h3>Facility location and network modification</h3>
+            <p>Where a service should go, and how adding an edge to the underlying network changes the
+            answer — including when the agents reporting their locations have reason to lie. This is the
+            classical, no-money side of my agenda, and it supplies the benchmarks the LLM-designed
+            mechanisms have to beat.</p>
+          </div>
+
+          <div class="thread">
+            <h3>Machine learning for public health and human behavior</h3>
+            <p>An ongoing collaboration with sociologists and public-health researchers on longitudinal
+            substance use among people who use drugs in the Great Plains: multi-label boosting for sparse
+            longitudinal outcomes, and generative augmentation for the small, expensive tabular datasets
+            that field work actually produces.</p>
+          </div>
+
+        </div>
+      </div>
+    </section> -->
+
+    <!-- ═══════════════ PUBLICATIONS ═══════════════ -->
+    <section class="band" id="publications">
+      <div class="band-grid">
+        <p class="band-label">Publications</p>
+        <div class="band-body">
+
+          <div class="pubset">
+            <h3>Conference proceedings</h3>
+            <ol class="pubs">
+
+              <li class="pub">
+                <p class="pub-venue">EMNLP 2026 <span class="flag">· Forthcoming</span></p>
+                <h4 class="pub-title">Multi-Facility Location Mechanism Design with Large Language Models</h4>
+                <p class="pub-authors"><strong>N. Thach</strong>, F. Liu, H. Zhou, H. Chan</p>
+              </li>
+
+              <!-- <li class="pub">
+                <p class="pub-venue">IJCAI 2026 <span class="flag">· Doctoral Consortium · in print</span></p>
+                <h4 class="pub-title">Novel Applications of Large Language Models in Computational Social Choice</h4>
+                <p class="pub-authors"><strong>N. Thach</strong></p>
+              </li> -->
+
+              <li class="pub">
+                <p class="pub-venue">HCOMP 2026 <span class="flag">· Forthcoming</span></p>
+                <h4 class="pub-title">Guiding Worker Self-Selection in Crowdsourcing Contests: An LLM-Augmented Algorithmic Approach</h4>
+                <p class="pub-authors"><strong>N. Thach</strong>, H. Chan, D. Parkes, K. Lakhani</p>
+              </li>
+
+              <li class="pub">
+                <p class="pub-venue">AAMAS 2026</p>
+                <h4 class="pub-title">Large Language Models for Designing Participatory Budgeting Rules</h4>
+                <p class="pub-authors"><strong>N. Thach</strong>, X. Sha, H. Chan</p>
+              </li>
+
+              <li class="pub">
+                <p class="pub-venue">ICLR 2025</p>
+                <h4 class="pub-title">MuHBoost: Multi-Label Boosting for Practical Longitudinal Human Behavior Modeling</h4>
+                <p class="pub-authors"><strong>N. Thach</strong>, P. Habecker, A. Eisenbraun, W. A. Mason, K. Tyler, B. Khan, H. Chan</p>
+              </li>
+
+              <li class="pub">
+                <p class="pub-venue">IJCAI 2024 <span class="flag">· AI for Good track</span></p>
+                <h4 class="pub-title">A Novel GAN Approach to Augment Limited Tabular Data for Short-Term Substance Use Prediction</h4>
+                <p class="pub-authors"><strong>N. Thach</strong>, P. Habecker, B. Johnston, L. Cervantes, A. Eisenbraun, A. Mason, K. Tyler, B. Khan, H. Chan</p>
+              </li>
+
+            </ol>
+          </div>
+
+          <div class="pubset">
+            <h3>Journal articles</h3>
+            <ol class="pubs">
+
+              <li class="pub">
+                <p class="pub-venue">Annals of Operations Research 2026 <span class="flag">· 356(2), 1231–1280</span></p>
+                <h4 class="pub-title">Improving the Location of Facilities through Network Addition Modification: A Revisit</h4>
+                <p class="pub-authors"><strong>N. Thach</strong>, C. Wang, H. Chan</p>
+              </li>
+
+              <li class="pub">
+                <p class="pub-venue">PLOS ONE 2024 <span class="flag">· 19(11), 1–33</span></p>
+                <h4 class="pub-title">Analyzing and Predicting Short-Term Substance Use Behaviors of Persons Who Use Drugs in the Great Plains of the U.S.</h4>
+                <p class="pub-authors"><strong>N. Thach</strong>, P. Habecker, B. Johnston, L. Cervantes, A. Eisenbraun, A. Mason, K. Tyler, B. Khan, H. Chan</p>
+              </li>
+
+              <li class="pub">
+                <p class="pub-venue">Cancers 2022 <span class="flag">· 14(7), 1654</span></p>
+                <h4 class="pub-title">Using Quantitative Imaging for Personalized Medicine in Pancreatic Cancer: A Review of Radiomics and Deep Learning Applications</h4>
+                <p class="pub-authors">K. Preuss, <strong>N. Thach</strong>, X. Liang, M. Baine, J. Chen, C. Zhang, H. Du, H. Yu, C. Lin, M. A. Hollingsworth, D. Zheng</p>
+              </li>
+
+            </ol>
+          </div>
+
+          <div class="pubset">
+            <!-- Venues deliberately omitted here: a target venue on a public page reads as
+                 an acceptance to a skimming reader. Add "Submitted to X" per paper only
+                 where that is literally true. -->
+            <h3>In submission and in preparation</h3>
+            <ol class="pubs">
+
+              <!-- <li class="pub">
+                <h4 class="pub-title">Large Language Models for Multi-Facility Location Mechanism Design</h4>
+                <p class="pub-authors"><strong>N. Thach</strong>, F. Liu, H. Zhou, H. Chan</p>
+              </li> -->
+
+              <li class="pub">
+                <h4 class="pub-title">Toward End-to-End LLM-Based Automatic Heuristic Design Using Reductions</h4>
+                <p class="pub-authors"><strong>N. Thach</strong>, N. Huynh, H. Chan</p>
+              </li>
+
+              <li class="pub">
+                <h4 class="pub-title">Large Language Models for Designing Voting Rules under Approximate Metric Distortion</h4>
+                <p class="pub-authors"><strong>N. Thach</strong>, H. Chan</p>
+              </li>
+
+              <li class="pub">
+                <h4 class="pub-title">Fairness of Large Language Models in Participatory Budgeting</h4>
+                <p class="pub-authors">J. Chen, <strong>N. Thach</strong>, H. Chan</p>
+              </li>
+
+              <!-- <li class="pub">
+                <h4 class="pub-title">Measuring Proportional Sample Calibration in Pluralistic Language Model Evaluation</h4>
+                <p class="pub-authors">X. Sha, <strong>N. Thach</strong>, H. Chan</p>
+              </li> -->
+
+            </ol>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ TEACHING ═══════════════ -->
+    <section class="band" id="teaching">
+      <div class="band-grid">
+        <p class="band-label">Teaching</p>
+        <div class="band-body">
+
+          <!-- TODO: two or three sentences of teaching philosophy belong here.
+               Teaching-focused committees look for it, and R1s increasingly do too. -->
+
+          <ul class="rows">
+            <li>
+              <span class="what">CSCE 422/822: Introduction to Computational Game Theory</span>
+              <span class="when">UNL · Fall 2026 · co-taught with Dr. Hau Chan</span>
+            </li>
+            <li>
+              <span class="what">CSCE 310/310H: Data Structures and Algorithms</span>
+              <span class="when">UNL · Fall 2025 · guest lecturer</span>
+            </li>
+            <li>
+              <span class="what">PHYS 141: Elementary General Physics I (Lab)</span>
+              <span class="when">UNL · Fall 2020</span>
+            </li>
+          </ul>
+
+          <!-- <h3 class="subhead">Student mentoring</h3>
+          <ul class="rows">
+            <li><span class="what">Jingwen Chen</span><span class="when">PhD student, UNL · 2026–present</span></li>
+            <li><span class="what">Mark Phan</span><span class="when">PhD student, UNL · 2026–present</span></li>
+            <li><span class="what">Xingchen Sha</span><span class="when">PhD student, Northwestern University · 2025–present</span></li>
+            <li><span class="what">Aida Riahifar</span><span class="when">PhD student, UNL · 2025–2026</span></li>
+          </ul> -->
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SERVICE, TALKS, FUNDING ═══════════════ -->
+    <section class="band" id="service">
+      <div class="band-grid">
+        <p class="band-label">Service &amp; talks</p>
+        <div class="band-body">
+
+          <h3 class="subhead">Organizing and reviewing</h3>
+          <p class="prose">
+            Co-chair for the <a href="https://optlearnmas.github.io/">OptLearnMAS-26</a> workshop at AAMAS 2026.
+            Reviewer for premier conferences, e.g., AAAI, IJCAI, NeurIPS, ICLR, with a reviewer distinction award at IJCAI 2026.
+          </p>
+
+          <h3 class="subhead">Invited talks</h3>
+          <ul class="rows">
+            <li>
+              <span class="what">LLMRule: Designing Participatory Budgeting Rules with Large Language Models</span>
+              <span class="when">Theory Seminar, Northwestern University · 2026</span>
+            </li>
+            <li>
+              <span class="what">Large Language Models for Combinatorial Optimization Problems in Transportation</span>
+              <span class="when">Transportation Engineering Seminar, UNL · 2025</span>
+            </li>
+            <li>
+              <span class="what">Evaluating Machine-Learning Models for Predicting Short-Term Substance Use Behaviors</span>
+              <span class="when">Annual Symposium on Substance Use Research, UNL · 2024</span>
+            </li>
+          </ul>
+
+          <!-- <h3 class="subhead">Proposal contributions</h3>
+          <ul class="rows">
+            <li>
+              <span class="what">Enhancing Substance Use Risk Prediction Using Generative AI-Derived Synthetic Data</span>
+              <span class="when">NIH R01 · $1.93M · under review</span>
+            </li>
+            <li>
+              <span class="what">Collaborative Network for Data-Driven High School Mathematics Pathways and College Mathematics Readiness</span>
+              <span class="when">NSF · $1.5M · under review</span>
+            </li>
+          </ul> -->
+
+          <!-- <h3 class="subhead">Selected awards</h3>
+          <ul class="rows">
+            <li><span class="what">Global Laureate Scholarship</span><span class="when">UNL · $60,000</span></li>
+            <li><span class="what">IJCAI-26 SIGAI Grant</span><span class="when">IJCAI · $1,000</span></li>
+            <li><span class="what">IJCAI-26 Gold Tier Reviewer Distinction</span><span class="when">IJCAI</span></li>
+            <li><span class="what">Professional Development Fellowship</span><span class="when">UNL College of Engineering</span></li>
+          </ul> -->
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <span>Nate Thach · Lincoln, Nebraska</span>
+    <span>Last updated August 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
